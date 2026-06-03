@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tính điểm môn học</title>
+    <meta
+      name="description"
+      content="Công cụ tính điểm môn học theo tỷ trọng quá trình, giữa kỳ và cuối kỳ."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="scoreboard" aria-label="Tổng quan điểm môn học">
+        <div>
+          <p class="eyebrow">Bảng phân bổ điểm môn học</p>
+          <h1>Tính điểm môn học</h1>
+        </div>
+
+        <div class="summary-grid">
+          <article class="total-panel">
+            <span>Điểm tổng kết</span>
+            <strong id="finalScore">0.00</strong>
+            <small id="statusLabel">Chưa nhập điểm</small>
+          </article>
+
+          <article class="metric">
+            <span>A1 Quá trình</span>
+            <strong id="formativeScore">0.00</strong>
+            <small>30%</small>
+          </article>
+
+          <article class="metric">
+            <span>A2 Giữa kỳ</span>
+            <strong id="midtermScore">0.00</strong>
+            <small>20%</small>
+          </article>
+
+          <article class="metric">
+            <span>A3 Cuối kỳ</span>
+            <strong id="finalExamScore">0.00</strong>
+            <small>50%</small>
+          </article>
+        </div>
+      </section>
+
+      <section class="target-bar" aria-label="Tính điểm mục tiêu">
+        <label for="targetScore">Mục tiêu</label>
+        <input id="targetScore" type="range" min="4" max="10" value="5" step="0.1" />
+        <output id="targetValue" for="targetScore">5.0</output>
+        <p id="neededFinal">Nhập điểm để xem mức cần đạt.</p>
+      </section>
+
+      <section class="layout">
+        <form class="grade-form" id="gradeForm">
+          <div class="section-heading">
+            <div>
+              <p>A1</p>
+              <h2>Đánh giá quá trình</h2>
+            </div>
+            <strong>30%</strong>
+          </div>
+          <div id="formativeList" class="assessment-list"></div>
+
+          <div class="section-heading">
+            <div>
+              <p>A2</p>
+              <h2>Đánh giá giữa kỳ</h2>
+            </div>
+            <strong>20%</strong>
+          </div>
+          <div id="midtermList" class="assessment-list"></div>
+
+          <div class="section-heading">
+            <div>
+              <p>A3</p>
+              <h2>Đánh giá cuối kỳ</h2>
+            </div>
+            <strong>50%</strong>
+          </div>
+          <div id="finalList" class="assessment-list"></div>
+        </form>
+
+        <aside class="breakdown" aria-label="Chi tiết tính điểm">
+          <div class="panel-head">
+            <h2>Chi tiết</h2>
+            <button class="ghost-button" id="resetButton" type="button">Đặt lại</button>
+          </div>
+
+          <div class="bars">
+            <div class="bar-row">
+              <span>A1</span>
+              <div class="bar-track"><div id="barFormative" class="bar-fill"></div></div>
+              <strong id="barFormativeText">0.00/3.00</strong>
+            </div>
+            <div class="bar-row">
+              <span>A2</span>
+              <div class="bar-track"><div id="barMidterm" class="bar-fill"></div></div>
+              <strong id="barMidtermText">0.00/2.00</strong>
