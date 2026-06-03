@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="vi">
   <head>
@@ -478,7 +479,7 @@ h1 {
 
       <section class="target-bar" aria-label="Tính điểm mục tiêu">
         <label for="targetScore">Mục tiêu</label>
-        <input id="targetScore" type="range" min="4" max="10" value="5" step="0.1" />
+        <input id="targetScore" type="range" min="0" max="10" value="5" step="0.1" />
         <output id="targetValue" for="targetScore">5.0</output>
         <p id="neededFinal">Nhập điểm để xem mức cần đạt.</p>
       </section>
@@ -591,10 +592,17 @@ const assessments = [
   },
   {
     group: "formative",
-    name: "Thuyết trình nhóm cuối kỳ và đánh giá chéo",
-    method: "Group + Individual",
+    name: "Thuyết trình nhóm cuối kỳ",
+    method: "Group",
     week: "9",
-    weight: 6,
+    weight: 5,
+  },
+  {
+    group: "formative",
+    name: "Đánh giá chéo",
+    method: "Individual",
+    week: "9",
+    weight: 1,
   },
   {
     group: "midterm",
@@ -649,6 +657,10 @@ function normalizeNumber(value) {
 
 function formatScore(value) {
   return value.toFixed(2);
+}
+
+function formatRoundedDown(value) {
+  return (Math.floor(value * 10) / 10).toFixed(1);
 }
 
 function makeAssessmentRow(assessment, index) {
@@ -733,15 +745,16 @@ function updateTarget(groupScores) {
   const target = normalizeNumber(targetScore.value);
   const currentWithoutFinal = groupScores.formative + groupScores.midterm;
   const finalNeeded = ((target - currentWithoutFinal) / 50) * 100;
+  const displayedFinalNeeded = formatRoundedDown(finalNeeded);
   targetValue.textContent = target.toFixed(1);
 
   const neededFinal = document.querySelector("#neededFinal");
   if (finalNeeded <= 0) {
     neededFinal.textContent = "Đã đủ điểm cho mục tiêu này trước khi tính cuối kỳ.";
   } else if (finalNeeded > 10) {
-    neededFinal.textContent = `Cần ${finalNeeded.toFixed(1)} điểm cuối kỳ, vượt mức 10.`;
+    neededFinal.textContent = `Cần ${displayedFinalNeeded} điểm cuối kỳ, vượt mức 10.`;
   } else {
-    neededFinal.textContent = `Cần ${finalNeeded.toFixed(1)} điểm cuối kỳ để đạt ${target.toFixed(1)}.`;
+    neededFinal.textContent = `Cần ${displayedFinalNeeded} điểm cuối kỳ để đạt ${target.toFixed(1)}.`;
   }
 }
 
