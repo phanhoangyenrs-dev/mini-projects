@@ -82,6 +82,29 @@ h1 {
   letter-spacing: 0;
 }
 
+.course-info {
+  display: grid;
+  gap: 7px;
+  margin-top: 18px;
+  color: #344154;
+  font-size: 0.98rem;
+  font-weight: 760;
+  line-height: 1.35;
+}
+
+.course-info span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.course-info strong {
+  color: var(--ink);
+  font-size: 1.1rem;
+}
+
 .summary-grid {
   display: grid;
   grid-template-columns: 1.1fr repeat(3, 0.75fr);
@@ -448,6 +471,16 @@ h1 {
         <div>
           <p class="eyebrow">Bảng phân bổ điểm môn học</p>
           <h1>Tính điểm môn học</h1>
+          <div class="course-info" aria-label="Thông tin môn học">
+            <p>
+              <span>Tên môn học tiếng Anh / Course title in English</span>
+              <strong>International Marketing</strong>
+            </p>
+            <p>
+              <span>Mã môn học / Course code</span>
+              <strong>BADM3302</strong>
+            </p>
+          </div>
         </div>
 
         <div class="summary-grid">
